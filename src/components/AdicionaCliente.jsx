@@ -5,7 +5,8 @@ const Campo = props => {
   const [field, meta] = useField(props)
 
   return (
-    <>
+    <div className="form-group">
+      <label htmlFor={props.id}>{props.label}</label>
       <input
         {...field}
         {...meta}
@@ -16,7 +17,7 @@ const Campo = props => {
           {meta.error}
         </div>
       }
-    </>
+    </div>
   )
 }
 
@@ -53,19 +54,9 @@ const AdicionaCliente = () => {
       >
         {props => (
           <form noValidate onSubmit={props.handleSubmit}>
-            <div className="form-group">
-              <label htmlFor="nome">Nome</label>
-              <Campo type="text" id="nome" name="nome" />
-              
-            </div>
-            <div className="form-group">
-              <label htmlFor="email">Email</label>
-              <Campo type="text" id="email" name="email" />
-            </div>
-            <div className="form-group">
-              <label htmlFor="date">Data de Nascimento</label>
-              <Campo type="text" id="nascimento" name="nascimento" />
-            </div>
+            <Campo type="text" id="nome" name="nome" label="Nome" />
+            <Campo type="text" id="email" name="email" label="Email" />
+            <Campo type="text" id="nascimento" name="nascimento" label="Data de Nascimento" />
             <button type="submit">Adicionar</button>
           </form>
         )}
