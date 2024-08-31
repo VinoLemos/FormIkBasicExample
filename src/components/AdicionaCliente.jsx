@@ -1,23 +1,8 @@
 import React from 'react';
-import { Formik } from 'formik';
+import { Formik, Field } from 'formik';
 
 
 const AdicionaCliente = () => {
-
-  const validateFields = (values) => {
-    const errors = {};
-    if (!values.nome) {
-      errors.nome = 'O nome é obrigatório!';
-    }
-    if (!values.email) {
-      errors.email = 'O email é obrigatório!';
-    }
-    if (!values.nome) {
-      errors.nascimento = 'A data de nascimento é obrigatória!';
-    }
-
-    return errors;
-  }
 
   return (
     <>
@@ -37,7 +22,7 @@ const AdicionaCliente = () => {
           if (!values.email) {
             errors.email = 'O email é obrigatório!';
           } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)) {
-            errors.email='O email é inválido.'
+            errors.email = 'O email é inválido.'
           }
           if (!values.nascimento) {
             errors.nascimento = 'A data de nascimento é obrigatória.';
@@ -51,13 +36,14 @@ const AdicionaCliente = () => {
           <form noValidate onSubmit={props.handleSubmit}>
             <div className="form-group">
               <label htmlFor="nome">Nome</label>
-              <input
+              <Field
                 id="nome"
                 name="nome"
                 type="text"
-                value={props.values.nome}
-                onChange={props.handleChange}
-                onBlur={props.handleBlur}
+                // As validações abaixo são nativas do componente 'Field', do FormIk.
+                // value={props.values.email}
+                // onChange={props.handleChange}
+                // onBlur={props.handleBlur}
                 className={props.errors.nome && props.touched.nome ? 'is-invalid' : ''}
               />
               {props.touched.nome && props.errors.nome &&
@@ -68,13 +54,10 @@ const AdicionaCliente = () => {
             </div>
             <div className="form-group">
               <label htmlFor="email">Email</label>
-              <input
+              <Field
                 id="email"
                 name="email"
                 type="email"
-                value={props.values.email}
-                onChange={props.handleChange}
-                onBlur={props.handleBlur}
                 className={props.errors.email && props.touched.email ? 'is-invalid' : ''}
               />
               {props.touched.email && props.errors.email &&
@@ -85,13 +68,10 @@ const AdicionaCliente = () => {
             </div>
             <div className="form-group">
               <label htmlFor="date">Data de Nascimento</label>
-              <input
+              <Field
                 id="nascimento"
                 name="nascimento"
                 type="date"
-                value={props.values.nascimento}
-                onChange={props.handleChange}
-                onBlur={props.handleBlur}
                 className={props.errors.nascimento && props.touched.nascimento ? 'is-invalid' : ''}
               />
               {props.touched.nascimento && props.errors.nascimento &&
