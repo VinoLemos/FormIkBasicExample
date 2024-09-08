@@ -10,7 +10,6 @@ const Campo = props => {
       <label htmlFor={props.id}>{props.label}</label>
       <input
         {...field}
-        {...meta}
         className={meta.error && meta.touched ? 'is-invalid' : ''}
       />
       {meta.error && meta.touched &&
