@@ -19,6 +19,11 @@ jobs:
           npm install
           npm run build
           npm run test
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}  # Access token for pushing to the gh-pages branch
+          publish_dir: ./build
 
   publish-gpr:
     needs: build
